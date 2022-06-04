@@ -1,4 +1,4 @@
-/* Copyright 2019 coseyfannitutti
+/* Copyright 2019 COSEYFANNITUTTI
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,18 +13,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "discipad.h"
+#include QMK_KEYBOARD_H
 
-#ifdef ENCODER_ENABLE
-bool encoder_update_kb(uint8_t index, bool clockwise) {
-    if (!encoder_update_user(index, clockwise)) { return false; }
-    if (index == 0) {
-        if (clockwise) {
-            tap_code_delay(KC_AUDIO_VOL_UP, 10);
-        } else {
-            tap_code_delay(KC_AUDIO_VOL_DOWN, 10);
-        }
-    }
-    return true;
-}
-#endif
+#define _BL 0
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  [_BL] = LAYOUT_numpad_5x4(
+      KC_TRNS, KC_PSLS, KC_PAST, KC_PMNS,
+      KC_P7,   KC_P8,   KC_P9,
+      KC_P4,   KC_P5,   KC_P6,   KC_PPLS,
+      KC_P1,   KC_P2,   KC_P3,
+      KC_P0,   KC_PDOT,          KC_PENT  )
+};
